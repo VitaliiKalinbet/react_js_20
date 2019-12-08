@@ -1,6 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
+import 'normalize.css';
+import './var.css';
 
 // const image = React.createElement("img", {
 //   src:
@@ -32,4 +34,4 @@ import App from "./App";
 //   </div>
 // )
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));

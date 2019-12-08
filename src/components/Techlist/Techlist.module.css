@@ -1,0 +1,19 @@
+.classToCompose {
+    width: 700px;
+    background-color: bisque;
+    margin: 0 auto;
+}
+
+.list {
+    list-style: none;
+    background-color: darkgoldenrod;
+}
+
+.active {
+    background-color: coral;
+}
+
+.anotherCssClass {
+    width: 500px;
+    margin: 0 auto;
+}
