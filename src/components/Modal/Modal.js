@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import T from 'prop-types';
+import { createPortal } from 'react-dom';
 import styles from './Modal.module.css';
+
+const MODAL_ROOT = document.querySelector('#modal-root');
 
 class Modal extends Component {
   static propTypes = {
@@ -9,6 +12,8 @@ class Modal extends Component {
   };
 
   state = {};
+
+  backdropRef = createRef();
 
   componentDidMount() {
     window.addEventListener('keydown', this.closeOnEscape);
@@ -28,9 +33,9 @@ class Modal extends Component {
   };
 
   handleCloseModal = e => {
-    // console.log(e.target);
-    // console.log(e.currentTarget);
-    if (e.target !== e.currentTarget) {
+    console.log('this.backdropRef.current :', this.backdropRef.current);
+    console.log('e.target :', e.target);
+    if (this.backdropRef.current && e.target !== this.backdropRef.current) {
       return;
     }
     const { onClose } = this.props;
@@ -39,14 +44,17 @@ class Modal extends Component {
 
   render() {
     const { children } = this.props;
-    return (
+    console.log('this.backdropRef :', this.backdropRef);
+    return createPortal(
       <div
+        ref={this.backdropRef}
         onClick={this.handleCloseModal}
         className={styles.backdrop}
         role="presentation"
       >
         <div className={styles.modal}>{children}</div>
-      </div>
+      </div>,
+      MODAL_ROOT,
     );
   }
 }

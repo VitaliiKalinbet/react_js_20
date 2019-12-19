@@ -6,6 +6,10 @@ class App extends Component {
     isModalOpen: false,
   };
 
+  // shouldComponentUpdate() {
+  //   return false;
+  // }
+
   openModal = () => {
     this.setState({ isModalOpen: true });
   };
