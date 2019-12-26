@@ -3,6 +3,7 @@ import * as API from '../services/api';
 import ArticleList from './ArticleList/ArticleList';
 import SearchBar from './SearchBar/SearchBar';
 import Loader from './Loader/Loader';
+import Toggle from '../renderProp/toggle';
 
 class App extends Component {
   state = {
@@ -56,7 +57,31 @@ class App extends Component {
     return (
       <>
         {isLoading && <Loader />}
-        <SearchBar onSubmit={this.onSubmitSerchBar} />
+
+        {/* Render prop, best example */}
+        <Toggle>
+          {({ isOpen, toggle }) => (
+            <div>
+              <button type="button" onClick={toggle}>
+                {isOpen ? 'Hide' : 'Show'}
+              </button>
+              {isOpen && <SearchBar onSubmit={this.onSubmitSerchBar} />}
+            </div>
+          )}
+        </Toggle>
+
+        {/* Render prop, another example */}
+        {/* <Toggle
+          render={({ isOpen, toggle }) => (
+            <div>
+              <button type="button" onClick={toggle}>
+                {isOpen ? 'Hide' : 'Show'}
+              </button>
+              {isOpen && <SearchBar onSubmit={this.onSubmitSerchBar} />}
+            </div>
+          )}
+        /> */}
+
         <ArticleList items={items} />
         <button onClick={this.onClickMore} type="button">
           Load more
