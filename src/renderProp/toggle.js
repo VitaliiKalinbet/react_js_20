@@ -4,7 +4,7 @@ import T from 'prop-types';
 
 class Toggle extends Component {
   static propTypes = {
-    children: T.node.isRequired,
+    children: T.func.isRequired,
   };
 
   state = { isOpen: false };
