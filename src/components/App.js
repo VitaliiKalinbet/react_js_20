@@ -14,6 +14,10 @@ function App() {
           component={routes.HOME_PAGE.component}
         />
         <Route
+          path={routes.SHOW_DETAILS_PAGE.path}
+          component={routes.SHOW_DETAILS_PAGE.component}
+        />
+        <Route
           path={routes.SHOWS_PAGE.path}
           component={routes.SHOWS_PAGE.component}
         />
