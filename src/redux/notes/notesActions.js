@@ -7,4 +7,11 @@ export const addNoteAction = data => ({
   },
 });
 
-export const w = () => {};
+export const deleteNoteAction = id => {
+  return {
+    type: types.DELETE_NOTE,
+    payload: {
+      id,
+    },
+  };
+};

@@ -1,6 +1,7 @@
 import React from 'react';
 import Timer from './Timer/Timer';
 import NoteForm from './NoteForm/NoteForm';
+import NoteList from './NoteList/NoteList';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Timer />
       <br />
       <NoteForm />
+      <NoteList />
     </div>
   );
 }

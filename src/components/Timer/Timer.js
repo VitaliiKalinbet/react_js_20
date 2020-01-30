@@ -24,7 +24,7 @@ const Timer = ({ value, onIncrement, onDecrement }) => (
 );
 
 const mapStateToProps = store => ({
-  value: store.value,
+  value: store.timer.value,
 });
 
 const mapDispatchToProps = dispatch => ({

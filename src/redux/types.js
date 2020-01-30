@@ -3,4 +3,5 @@ export default {
   DECREMENT_VALUE: 'DECREMENT_VALUE',
 
   ADD_NOTE: 'ADD_NOTE',
+  DELETE_NOTE: 'DELETE_NOTE',
 };
