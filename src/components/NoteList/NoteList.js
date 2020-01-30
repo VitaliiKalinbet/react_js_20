@@ -21,7 +21,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onDeleteNote: id => dispatch(notesActions.deleteNoteAction(id)),
+  onDeleteNote: id => dispatch(notesActions.deleteNoteAction({ id })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteList);

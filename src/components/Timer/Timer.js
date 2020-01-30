@@ -28,8 +28,8 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onIncrement: value => dispatch(timerActions.incrementAction(value)),
-  onDecrement: value => dispatch(timerActions.decrementAction(value)),
+  onIncrement: value => dispatch(timerActions.incrementAction({ value })),
+  onDecrement: value => dispatch(timerActions.decrementAction({ value })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);

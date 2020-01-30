@@ -33,7 +33,7 @@ class NoteForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSave: data => dispatch(notesActions.addNoteAction(data)),
+  onSave: note => dispatch(notesActions.addNoteAction({ note })),
 });
 
 export default connect(null, mapDispatchToProps)(NoteForm);
