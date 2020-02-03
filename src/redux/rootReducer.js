@@ -1,10 +1,8 @@
-import { combineReducers } from 'redux';
-import timerReducers from './timer/timerReducers';
-import notesReducers from './notes/notesReducers';
+import { combineReducers } from "redux";
+import budgetAppReducer from "./budgetApp/budgetAppReducers";
 
 const rootReducer = combineReducers({
-  timer: timerReducers,
-  notes: notesReducers,
+  budgetApp: budgetAppReducer
 });
 
 export default rootReducer;
