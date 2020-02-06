@@ -20,3 +20,10 @@ export const removeExpenseAction = value => ({
     id: value
   }
 });
+
+export const searchExpenseAction = value => ({
+  type: types.SEARCH_EXPENSE,
+  payload: {
+    value: value
+  }
+});

@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as budgetActions from "../redux/budgetApp/budgetActions";
 import shortid from "shortid";
-import Form from "./shared/Form";
-import Label from "./shared/Label";
-import Input from "./shared/Input";
-import Button from "./shared/Button";
+import Form from "../shared/Form";
+import Label from "../shared/Label";
+import Input from "../shared/Input";
+import Button from "../shared/Button";
 
 const labelStyles = `
   margin-bottom: 16px;  
@@ -62,8 +60,4 @@ class ExpenseForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  onSave: data => dispatch(budgetActions.addExpenseAction(data))
-});
-
-export default connect(null, mapDispatchToProps)(ExpenseForm);
+export default ExpenseForm;

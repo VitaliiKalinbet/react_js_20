@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import BudgetForm from "./BudgetForm";
-import ExpenseForm from "./ExpenseForm";
-import ExpensesTable from "./ExpensesTable";
+import BudgetForm from "./BudgetForm/BudgetFormContainer";
+import ExpenseForm from "./ExpensesForm/ExpensesFormContainer";
+import ExpensesTable from "./ExpensesTable/ExpensesTableContainer";
 import Values from "./Values";
+import Timer from "./Timer/Timer";
 import * as budgetAppSelectors from "../redux/budgetApp/budgetAppSelectors";
+import SearchBar from "./SearchBar/SearchBar";
 
 const Container = styled.div`
   display: grid;
@@ -21,12 +23,17 @@ const Container = styled.div`
 
 const App = ({ expenses }) => {
   return (
-    <Container>
-      <BudgetForm />
-      <Values />
-      <ExpenseForm />
-      {expenses.length > 0 && <ExpensesTable />}
-    </Container>
+    <>
+      <SearchBar />
+      <Container>
+        <BudgetForm />
+        <Values />
+        <ExpenseForm />
+        {expenses.length > 0 && <ExpensesTable />}
+      </Container>
+      <br />
+      <Timer />
+    </>
   );
 };
 

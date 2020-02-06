@@ -24,7 +24,18 @@ const expensesReducer = (state = [], { type, payload }) => {
   }
 };
 
+const searchReducer = (state = "", { payload, type }) => {
+  switch (type) {
+    case types.SEARCH_EXPENSE:
+      return payload.value;
+
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   budget: budgetReducer,
-  expenses: expensesReducer
+  expenses: expensesReducer,
+  search: searchReducer
 });
