@@ -3,8 +3,13 @@ import * as types from "../budgetApp/budgetAppTypes";
 
 const budgetReducer = (state = 0, action) => {
   switch (action.type) {
-    case types.SET_BUDGET:
+    case types.SET_BUDGET_SUCCESS:
+    case types.GET_BUDGET_SUCCESS:
       return action.payload.budget;
+
+    case types.SET_BUDGET_ERROR:
+    case types.GET_BUDGET_ERROR:
+      return state;
 
     default:
       return state;
@@ -13,21 +18,48 @@ const budgetReducer = (state = 0, action) => {
 
 const expensesReducer = (state = [], { type, payload }) => {
   switch (type) {
-    case types.ADD_EXPENSE:
+    case types.ADD_EXPENSE_SUCCESS:
       return [payload.expense, ...state];
 
-    case types.REMOVE_EXPENSE:
-      return state.filter(el => el.id !== payload.id);
+    case types.ADD_EXPENSE_ERROR:
+      return state;
 
     default:
       return state;
   }
 };
 
-const searchReducer = (state = "", { payload, type }) => {
+const isLoadingReducer = (state = false, { type }) => {
   switch (type) {
-    case types.SEARCH_EXPENSE:
-      return payload.value;
+    case types.SET_BUDGET_START:
+    case types.GET_BUDGET_START:
+    case types.ADD_EXPENSE_START:
+      return true;
+
+    case types.SET_BUDGET_SUCCESS:
+    case types.SET_BUDGET_ERROR:
+    case types.GET_BUDGET_SUCCESS:
+    case types.GET_BUDGET_ERROR:
+    case types.ADD_EXPENSE_SUCCESS:
+    case types.ADD_EXPENSE_ERROR:
+      return false;
+
+    default:
+      return state;
+  }
+};
+
+const errorReducer = (state = null, { type, payload }) => {
+  switch (type) {
+    case types.SET_BUDGET_START:
+    case types.GET_BUDGET_START:
+    case types.ADD_EXPENSE_START:
+      return null;
+
+    case types.SET_BUDGET_ERROR:
+    case types.GET_BUDGET_ERROR:
+    case types.ADD_EXPENSE_ERROR:
+      return payload.error;
 
     default:
       return state;
@@ -37,5 +69,6 @@ const searchReducer = (state = "", { payload, type }) => {
 export default combineReducers({
   budget: budgetReducer,
   expenses: expensesReducer,
-  search: searchReducer
+  isLoading: isLoadingReducer,
+  error: errorReducer
 });

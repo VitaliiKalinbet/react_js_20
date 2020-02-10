@@ -4,7 +4,7 @@ import * as budgetActions from "../../redux/budgetApp/budgetActions";
 import * as budgetAppSelectors from "../../redux/budgetApp/budgetAppSelectors";
 
 const mapStateToProps = store => ({
-  expenses: budgetAppSelectors.getFilteredExpenses(store)
+  expenses: budgetAppSelectors.getExpenses(store)
 });
 
 const mapDispatchToProps = dispatch => ({

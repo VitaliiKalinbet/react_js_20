@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import BudgetForm from "./BudgetForm/BudgetFormContainer";
@@ -7,7 +7,7 @@ import ExpensesTable from "./ExpensesTable/ExpensesTableContainer";
 import Values from "./Values";
 import Timer from "./Timer/Timer";
 import * as budgetAppSelectors from "../redux/budgetApp/budgetAppSelectors";
-import SearchBar from "./SearchBar/SearchBar";
+import * as budgetOperations from "../redux/budgetApp/budgetOperations";
 
 const Container = styled.div`
   display: grid;
@@ -21,24 +21,34 @@ const Container = styled.div`
   margin-right: auto;
 `;
 
-const App = ({ expenses }) => {
-  return (
-    <>
-      <SearchBar />
-      <Container>
-        <BudgetForm />
-        <Values />
-        <ExpenseForm />
-        {expenses.length > 0 && <ExpensesTable />}
-      </Container>
-      <br />
-      <Timer />
-    </>
-  );
-};
+class App extends Component {
+  componentDidMount() {
+    this.props.getBudgetOperation();
+  }
+
+  render() {
+    const { expenses } = this.props;
+    return (
+      <>
+        <Container>
+          <BudgetForm />
+          <Values />
+          <ExpenseForm />
+          {expenses.length > 0 && <ExpensesTable />}
+        </Container>
+        <br />
+        <Timer />
+      </>
+    );
+  }
+}
 
 const mapStateToProps = store => ({
   expenses: budgetAppSelectors.getExpenses(store)
 });
 
-export default connect(mapStateToProps, null)(App);
+const mapDispatchToProps = dispatch => ({
+  getBudgetOperation: () => dispatch(budgetOperations.getBudgetOperation())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

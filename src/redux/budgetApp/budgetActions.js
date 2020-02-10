@@ -1,16 +1,52 @@
 import * as types from "../budgetApp/budgetAppTypes";
 
-export const setBudgetAction = value => ({
-  type: types.SET_BUDGET,
+// set budget actions
+export const setBudgetStart = () => ({
+  type: types.SET_BUDGET_START
+});
+export const setBudgetSuccess = budget => ({
+  type: types.SET_BUDGET_SUCCESS,
   payload: {
-    budget: value
+    budget: budget
+  }
+});
+export const setBudgetError = error => ({
+  type: types.SET_BUDGET_ERROR,
+  payload: {
+    error: error
+  }
+});
+// get budget actions
+export const getBudgetStart = () => ({
+  type: types.GET_BUDGET_START
+});
+export const getBudgetSuccess = budget => ({
+  type: types.GET_BUDGET_SUCCESS,
+  payload: {
+    budget: budget
+  }
+});
+export const getBudgetError = error => ({
+  type: types.GET_BUDGET_ERROR,
+  payload: {
+    error: error
   }
 });
 
-export const addExpenseAction = data => ({
-  type: types.ADD_EXPENSE,
+// add expense actions
+export const addExpenseStart = () => ({
+  type: types.ADD_EXPENSE_START
+});
+export const addExpenseSuccess = data => ({
+  type: types.ADD_EXPENSE_SUCCESS,
   payload: {
     expense: data
+  }
+});
+export const addExpenseError = error => ({
+  type: types.GET_BUDGET_ERROR,
+  payload: {
+    error: error
   }
 });
 
@@ -18,12 +54,5 @@ export const removeExpenseAction = value => ({
   type: types.REMOVE_EXPENSE,
   payload: {
     id: value
-  }
-});
-
-export const searchExpenseAction = value => ({
-  type: types.SEARCH_EXPENSE,
-  payload: {
-    value: value
   }
 });
