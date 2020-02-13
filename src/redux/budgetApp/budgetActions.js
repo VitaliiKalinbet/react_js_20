@@ -44,15 +44,42 @@ export const addExpenseSuccess = data => ({
   }
 });
 export const addExpenseError = error => ({
-  type: types.GET_BUDGET_ERROR,
+  type: types.ADD_EXPENSE_ERROR,
   payload: {
     error: error
   }
 });
 
-export const removeExpenseAction = value => ({
-  type: types.REMOVE_EXPENSE,
+// get expenses actions
+export const getExpensesStart = () => ({
+  type: types.GET_EXPENSE_START
+});
+export const getExpensesSuccess = arr => ({
+  type: types.GET_EXPENSE_SUCCESS,
   payload: {
-    id: value
+    expenses: arr
+  }
+});
+export const getExpensesError = error => ({
+  type: types.GET_EXPENSE_ERROR,
+  payload: {
+    error: error
+  }
+});
+
+// delete expense actions
+export const deleteExpenseStart = () => ({
+  type: types.DELETE_EXPENSE_START
+});
+export const deleteExpenseSuccess = id => ({
+  type: types.DELETE_EXPENSE_SUCCESS,
+  payload: {
+    id: id
+  }
+});
+export const deleteExpenseError = error => ({
+  type: types.DELETE_EXPENSE_ERROR,
+  payload: {
+    error: error
   }
 });

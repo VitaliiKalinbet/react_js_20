@@ -24,6 +24,7 @@ const Container = styled.div`
 class App extends Component {
   componentDidMount() {
     this.props.getBudgetOperation();
+    this.props.getExpensesOperation();
   }
 
   render() {
@@ -48,7 +49,8 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getBudgetOperation: () => dispatch(budgetOperations.getBudgetOperation())
+  getBudgetOperation: () => dispatch(budgetOperations.getBudgetOperation()),
+  getExpensesOperation: () => dispatch(budgetOperations.getExpensesOperation())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
