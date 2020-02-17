@@ -1,7 +1,12 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import shortid from 'shortid';
 import { Link } from 'react-router-dom';
-// eslint-disable-next-line import/no-cycle
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import * as authOperations from '../../redux/auth/authOperations';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 import routes from '../../routes/routes';
 import styles from './RegistrationPage.module.css';
 
@@ -22,6 +27,9 @@ class RegistrationPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { register } = this.props;
+    register({ ...this.state });
+    this.setState({ email: '', password: '', name: '' });
   };
 
   render() {
@@ -73,4 +81,10 @@ class RegistrationPage extends Component {
   }
 }
 
-export default RegistrationPage;
+const mDTP = dispatch => ({
+  register: user => dispatch(authOperations.register(user)),
+});
+
+// export default withAuthRedirect(connect(null, mDTP)(RegistrationPage));
+
+export default compose(withAuthRedirect, connect(null, mDTP))(RegistrationPage);

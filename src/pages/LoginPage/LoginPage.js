@@ -1,7 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable import/no-cycle */
 import React, { Component } from 'react';
 import shortid from 'shortid';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import * as authOperations from '../../redux/auth/authOperations';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 import styles from './LoginPage.module.css';
 import routes from '../../routes/routes';
 
@@ -20,6 +24,9 @@ class LoginPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { login } = this.props;
+    login({ ...this.state });
+    this.setState({ email: '', password: '' });
   };
 
   render() {
@@ -60,4 +67,8 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+const mDTP = dispatch => ({
+  login: user => dispatch(authOperations.login(user)),
+});
+
+export default withAuthRedirect(connect(null, mDTP)(LoginPage));
