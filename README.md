@@ -6,4 +6,4 @@
 4. [Thinking in React Hooks](https://wattenberger.com/blog/react-hooks)
 5. [A Complete Guide to useEffect](https://overreacted.io/a-complete-guide-to-useeffect/)
 6. [example hooks in codesandbox](https://codesandbox.io/s/z3ow32rk43)
-7. [](https://reacttraining.com/react-router/web/api/Hooks)
+7. [react-router-dom hooks](https://reacttraining.com/react-router/web/api/Hooks)
