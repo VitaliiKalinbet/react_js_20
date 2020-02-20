@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
 import routes from '../routes/routes';
 import * as authOperations from '../redux/auth/authOperations';
+import * as authSelectors from '../redux/auth/authSelectors';
+import Loader from './Loader/Loader';
 
 class App extends Component {
   componentDidMount() {
@@ -13,8 +15,10 @@ class App extends Component {
   }
 
   render() {
+    const { isLoading } = this.props;
     return (
       <div>
+        {isLoading && <Loader />}
         <Switch>
           <Route
             path={routes.REGISTRATION_PAGE.path}
@@ -35,8 +39,12 @@ class App extends Component {
   }
 }
 
+const mSTP = store => ({
+  isLoading: authSelectors.getIsLoading(store),
+});
+
 const mDTP = dispatch => ({
   refresh: () => dispatch(authOperations.refresh()),
 });
 
-export default connect(null, mDTP)(App);
+export default connect(mSTP, mDTP)(App);

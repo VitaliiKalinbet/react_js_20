@@ -53,8 +53,8 @@ export const refresh = () => (dispatch, getStore) => {
   dispatch(authActions.refreshStart());
 
   API.refresh()
-    .then(() => {
-      dispatch(authActions.refreshSuccess());
+    .then(res => {
+      dispatch(authActions.refreshSuccess(res.data));
     })
     .catch(err => dispatch(authActions.refreshError(err)));
 };
