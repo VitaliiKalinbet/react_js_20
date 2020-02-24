@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-const TodoList = ({ items }) => (
+const TodoList = props => (
   <ul>
-    {items.map(item => (
+    {/* {props.items.map(item => (
       <li key={item}>{item}</li>
-    ))}
+    ))} */}
   </ul>
 );
 

@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class TodoEditor extends Component {
   state = {
-    text: ''
+    text: ""
   };
 
   textChangeHandler = e => {
     this.setState({
-      text: e.currentTarget.value
+      text: e.target.value
     });
   };
 
@@ -15,7 +15,7 @@ export default class TodoEditor extends Component {
     e.preventDefault();
 
     this.props.onSave(this.state.text);
-    this.setState({ text: '' });
+    this.setState({ text: "" });
   };
 
   render() {
