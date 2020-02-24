@@ -1,91 +1,25 @@
-/* eslint-disable react/prop-types */
-// import React, { Component } from 'react';
-// import { Switch, Route, Redirect } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
-// import routes from '../routes/routes';
-// import * as authOperations from '../redux/auth/authOperations';
-// import * as authSelectors from '../redux/auth/authSelectors';
-// import Loader from './Loader/Loader';
+import React, { Component } from "react";
+import TodoEditor from "./TodoEditor/TodoEditor";
+import TodoList from "./TodoList/TodoList";
 
-// class App extends Component {
-//   componentDidMount() {
-//     const { refresh } = this.props;
-//     refresh();
-//   }
+export default class App extends Component {
+  state = {
+    todos: []
+  };
 
-//   render() {
-//     const { isLoading } = this.props;
-// return (
-//   <div>
-//     {isLoading && <Loader />}
-//     <Switch>
-//       <Route
-//         path={routes.REGISTRATION_PAGE.path}
-//         component={routes.REGISTRATION_PAGE.component}
-//       />
-//       <Route
-//         path={routes.LOGIN_PAGE.path}
-//         component={routes.LOGIN_PAGE.component}
-//       />
-//       <ProtectedRoute
-//         path={routes.DASHBOARD_PAGE.path}
-//         component={routes.DASHBOARD_PAGE.component}
-//       />
-//       <Redirect to="/login" />
-//     </Switch>
-//   </div>
-// );
-//   }
-// }
+  saveTodo = todo => {
+    this.setState(state => ({
+      todos: [...state.todos, todo]
+    }));
+  };
 
-// const mSTP = store => ({
-//   isLoading: authSelectors.getIsLoading(store),
-// });
+  render() {
+    return (
+      <div className="App">
+        <TodoEditor onSave={this.saveTodo} />
 
-// const mDTP = dispatch => ({
-//   refresh: () => dispatch(authOperations.refresh()),
-// });
-
-// export default connect(mSTP, mDTP)(App);
-
-import React, { useEffect } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import ProtectedRoute from './ProtectedRoute/ProtectedRoute';
-import routes from '../routes/routes';
-import * as authOperations from '../redux/auth/authOperations';
-import * as authSelectors from '../redux/auth/authSelectors';
-import Loader from './Loader/Loader';
-
-export default function App() {
-  const isLoading = useSelector(store => authSelectors.getIsLoading(store));
-  const dispatch = useDispatch();
-
-  // hook который может заменить componentDidMount, componentDidUpdate,componentWillUnmount
-  // это componentDidMount:
-  useEffect(() => {
-    dispatch(authOperations.refresh());
-  }, [dispatch]);
-
-  return (
-    <div>
-      {isLoading && <Loader />}
-      <Switch>
-        <Route
-          path={routes.REGISTRATION_PAGE.path}
-          component={routes.REGISTRATION_PAGE.component}
-        />
-        <Route
-          path={routes.LOGIN_PAGE.path}
-          component={routes.LOGIN_PAGE.component}
-        />
-        <ProtectedRoute
-          path={routes.DASHBOARD_PAGE.path}
-          component={routes.DASHBOARD_PAGE.component}
-        />
-        <Redirect to="/login" />
-      </Switch>
-    </div>
-  );
+        {this.state.todos.length > 0 && <TodoList items={this.state.todos} />}
+      </div>
+    );
+  }
 }
